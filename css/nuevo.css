@@ -1,0 +1,22 @@
+body{
+    margin: 0px;
+    background-color: rgb(240, 240, 240);
+    
+}
+
+.arriba{
+    background-color: rgba(0, 0, 0, 0.863);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 40px;
+}
+
+.titulo1{
+    color: rgb(253, 253, 253);
+    margin: 0px auto;
+    font-size: 20px;
+    margin-top: 6px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
