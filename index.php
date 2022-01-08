@@ -3,41 +3,7 @@
 include_once('includes/conection.php');                
 include_once('includes/consultas.php');                
 
-    //Editar empleado
 
-    if (isset($_POST['editar'])) {
-		$editar = $conn->prepare('UPDATE tbl_empleado SET nombre=:nombre,apellido=:apellido,id_estado_civil=:id_estado_civil,
-        fecha_nacimiento=:fecha_nacimiento,id_genero=:id_genero,rh=:rh,id_cargo=:id_cargo,direccion=:direccion,
-        id_municipio=:id_municipio,cuenta_bancaria=:cuenta_bancaria,salario=:salario,id_eps=:id_eps,
-        id_arl=:id_arl,id_afp=:id_afp,id_caja_compensacion=:id_caja_compensacion WHERE cedula=:cedula');   
-
-        $editar->bindParam(':cedula',$_POST['cedula']);
-        $editar->bindParam(':nombre',$_POST['nombre']);
-        $editar->bindParam(':apellido',$_POST['apellido']);
-        $editar->bindParam(':id_estado_civil',$_POST['id_estado_civil']);
-        $editar->bindParam(':fecha_nacimiento',$_POST['fecha_nacimiento']);
-        $editar->bindParam(':id_genero',$_POST['id_genero']);
-        $editar->bindParam(':rh',$_POST['rh']);
-        $editar->bindParam(':id_cargo',$_POST['id_cargo']);
-        $editar->bindParam(':direccion',$_POST['direccion']);
-        $editar->bindParam(':id_municipio',$_POST['id_municipio']);
-        $editar->bindParam(':cuenta_bancaria',$_POST['cuenta_bancaria']);
-        $editar->bindParam(':salario',$_POST['salario']);
-        $editar->bindParam(':id_eps',$_POST['id_eps']);
-        $editar->bindParam(':id_arl',$_POST['id_arl']);
-        $editar->bindParam(':id_afp',$_POST['id_afp']);
-        $editar->bindParam(':id_caja_compensacion',$_POST['id_caja_compensacion']);
-        
-
-		if ($editar->execute()) {
-		    $mensaje = "Se ha actualizado el trabajador";
-
-		}else{
-			$mensajemalo = "Error";
-		}
-	}  
-     
-    //Editar empleado
 ?>
 
 
