@@ -85,6 +85,31 @@ include_once('includes/consultas.php');
 
     <div class="aa">
 
+	<?php 
+
+		//Consulta para los datos de la tabla
+
+		$sentencia=$conn-> query("SELECT tbl_empleado.cedula,tbl_empleado.nombre,tbl_empleado.apellido,tbl_empleado.id_estado_civil,tbl_estado_civil.nombre as nomestado,
+		tbl_empleado.fecha_nacimiento,tbl_empleado.salario,tbl_empleado.cuenta_bancaria,tbl_empleado.id_genero,tbl_genero.nombre as nomgenero,tbl_empleado.rh,
+		tbl_empleado.id_cargo,tbl_cargo.nombre as nomcargo,tbl_empleado.direccion,tbl_empleado.id_municipio,tbl_municipio.nombre as nommunicipio,tbl_empleado.estado,
+		tbl_empleado.id_eps,tbl_eps.nombre as nomeps,tbl_empleado.id_afp,tbl_afp.nombre as nomafp,tbl_empleado.id_arl,tbl_arl.nombre as nomarl,tbl_empleado.id_caja_compensacion,
+		tbl_caja_compensacion.nombre as nomcaja
+		FROM tbl_empleado
+		inner join tbl_estado_civil on tbl_empleado.id_estado_civil=tbl_estado_civil.id_estado_civil
+		inner join tbl_genero on tbl_empleado.id_genero=tbl_genero.id_genero
+		inner join tbl_cargo on tbl_empleado.id_cargo=tbl_cargo.id_cargo
+		inner join tbl_municipio on tbl_empleado.id_municipio=tbl_municipio.id_municipio
+		inner join tbl_eps on tbl_empleado.id_eps=tbl_eps.id_eps
+		inner join tbl_afp on tbl_empleado.id_afp=tbl_afp.id_afp
+		inner join tbl_arl on tbl_empleado.id_arl=tbl_arl.id_arl
+		inner join tbl_caja_compensacion on tbl_empleado.id_caja_compensacion=tbl_caja_compensacion.id_caja_compensacion");
+
+		$tblempleado=$sentencia-> fetchALL(PDO::FETCH_OBJ);
+
+		//Consulta para los datos de la tabla
+
+	?>
+
 		<!-- nuevo empleado -->
 		<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i> Nuevo Empleado</button>
 
@@ -140,7 +165,7 @@ include_once('includes/consultas.php');
 								<td> <?php echo $empleado->nomcaja?> </td>
                                 
 								<td class="ee"><button id="editar" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editar<?php echo $empleado -> cedula; ?>"><i class="fas fa-pen"></i></button></td>
-								<td class="ee"> <button type="button" class="btn btn-dark eliminarbtn" data-bs-toggle="modal" data-bs-target="#eliminar"><i class="fas fa-trash"></i> </button></td>
+								<td class="ee"> <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#eliminar<?php echo $empleado -> cedula; ?>"><i class="fas fa-trash"></i> </button></td>
 							</tr>
 
 							<!-- Modal editar-->
@@ -157,10 +182,10 @@ include_once('includes/consultas.php');
 												<div class="padd-impu">
 													<div class="nom-apee">
 														<label for="" class="fecha">Documento : <?php echo $empleado-> cedula;?></label>
-                        					</div>
-                                       <div class="nom-apee">
-                                       <input type="hidden" placeholder="Cedula" name="cedula" value="<?php echo $empleado-> cedula;?>"  required>
-                        					</div>
+                        							</div>
+                                       					<div class="nom-apee">
+                                       					<input type="hidden" placeholder="Cedula" name="cedula" value="<?php echo $empleado-> cedula;?>"  required>
+                        							</div>
 													 <div class="nom-apee">
 														<label for="" class="fecha">Nombre :</label>
 														<label for="" class="fecha derecha a">Apellido :</label>
@@ -267,7 +292,7 @@ include_once('includes/consultas.php');
 															<option class="opciones" value="<?php echo $caja -> id_caja_compensacion ?>"><?php echo $caja -> nombre ?></option>  
 															<?php } ?>  
 														</select>
-                        				   </div>
+                        				   			</div>
 														
 												</div>
 												<div class="modal-footer">
@@ -281,17 +306,17 @@ include_once('includes/consultas.php');
 								</div>
 							</div>
 							<!-- Modal eliminar-->
-							<div class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="eliminar<?php echo $empleado-> cedula; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 								<div class="modal-dialog">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajador</h5>
+											<h5 class="modal-title" id="exampleModalLabel">Eliminar trabajador:<h1 class="nombrep">  <?php echo $empleado->nombre;?> <?php echo $empleado->apellido;?> </h1></h5>
 											<button type="button" class="cerr" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
 										</div>
 										<div class="modal-body">
 											<div class="msg">
-												<h4 class="msg-eliminar">Estas seguro de eliminar este registro ?</h4>
-												<?php echo "<span>Documento: </span>".$traba-> docid; ?>
+												<h4 class="msg-eliminar">¿ Estas de cambiar este registro a Inactivo ?</h4>
+												<?php echo "<span>Documento: </span>".$empleado-> cedula; ?> <br>
 											</div>
 										</div>
 										<!-- Modal formulario-->

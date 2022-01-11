@@ -29,28 +29,6 @@
 
     //datos de las tablas desplegables
 
-    //Consulta para los datos de la tabla
-
-        $sentencia=$conn-> query("SELECT tbl_empleado.cedula,tbl_empleado.nombre,tbl_empleado.apellido,tbl_empleado.id_estado_civil,tbl_estado_civil.nombre as nomestado,
-        tbl_empleado.fecha_nacimiento,tbl_empleado.salario,tbl_empleado.cuenta_bancaria,tbl_empleado.id_genero,tbl_genero.nombre as nomgenero,tbl_empleado.rh,
-        tbl_empleado.id_cargo,tbl_cargo.nombre as nomcargo,tbl_empleado.direccion,tbl_empleado.id_municipio,tbl_municipio.nombre as nommunicipio,tbl_empleado.estado,
-        tbl_empleado.id_eps,tbl_eps.nombre as nomeps,tbl_empleado.id_afp,tbl_afp.nombre as nomafp,tbl_empleado.id_arl,tbl_arl.nombre as nomarl,tbl_empleado.id_caja_compensacion,
-        tbl_caja_compensacion.nombre as nomcaja
-        FROM tbl_empleado
-        inner join tbl_estado_civil on tbl_empleado.id_estado_civil=tbl_estado_civil.id_estado_civil
-        inner join tbl_genero on tbl_empleado.id_genero=tbl_genero.id_genero
-        inner join tbl_cargo on tbl_empleado.id_cargo=tbl_cargo.id_cargo
-        inner join tbl_municipio on tbl_empleado.id_municipio=tbl_municipio.id_municipio
-        inner join tbl_eps on tbl_empleado.id_eps=tbl_eps.id_eps
-        inner join tbl_afp on tbl_empleado.id_afp=tbl_afp.id_afp
-        inner join tbl_arl on tbl_empleado.id_arl=tbl_arl.id_arl
-        inner join tbl_caja_compensacion on tbl_empleado.id_caja_compensacion=tbl_caja_compensacion.id_caja_compensacion");
-
-        $tblempleado=$sentencia-> fetchALL(PDO::FETCH_OBJ);
-
-    //Consulta para los datos de la tabla
-
-
     //Nuevo empleado
 
     $search=$conn->prepare('SELECT * FROM tbl_empleado WHERE cedula=:cedula;');
