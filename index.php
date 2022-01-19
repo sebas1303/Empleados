@@ -54,7 +54,7 @@ include_once('includes/consultas.php');
     <div class="arriba">
         <h1 class="titulo1"> Apoyo logistico  ZF</h1>
     </div>
-	<p>Buenas y santas</p>
+	
     <header> 
         <div class="topnav" id="myTopnav">
             <a class="itm" href="index.php"><i class="fas fa-home"></i> Inicio</a>
