@@ -15,7 +15,7 @@ include_once('includes/consultas.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- favicon -->
     <link rel="icon" href="image/logo1.png">
-	<!-- Buenasssssssssssssssssssssssssssssssssssss -->
+	
 
     <!-- css -->
     <link rel="stylesheet" href="css/empleado.css">
